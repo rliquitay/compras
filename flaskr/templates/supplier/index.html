@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% block header %}
+<h1>{% block title %}Proveedores{% endblock %}</h1>
+{% endblock %} {% block content %} {% for supplier in suppliers %}
+<article class="supplier">
+  <header>
+    <div>
+      <h1>{{ supplier['razon_social'] }}</h1>
+      <div class="cuit">cuit {{ supplier['cuit'] }}</div>
+    </div>
+    <a class="action" href="{{ url_for('supplier.update', razon_social=supplier['razon_social']) }}">Editar</a>
+  </header>
+</article>
+{% if not loop.last %}
+<hr />
+{% endif %} {% endfor %} {% endblock %}

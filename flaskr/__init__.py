@@ -23,8 +23,8 @@ def create_app():
 
     db.init_app(app)
 
-    from . import proveedor
+    from . import supplier
 
-    app.register_blueprint(proveedor.bp)
+    app.register_blueprint(supplier.bp)
 
     return app
