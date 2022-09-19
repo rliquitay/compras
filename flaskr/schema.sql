@@ -13,7 +13,7 @@ create table if not exists proveedores(
 
 create table if not exists compras(
     id integer primary key autoincrement,
-    numero_comprobante integer not null,
+    numero_comprobante integer not null unique,
     fecha_compra date not null,
     fecha_pago date not null,
     iva_compra integer null,

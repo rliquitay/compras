@@ -1,0 +1,92 @@
+{% extends 'base.html' %} {% block header %}
+<h1>
+  {% block title %}Editar compra # "{{ purchase['numero_comprobante'] }}"{%
+  endblock %}
+</h1>
+{% endblock %} {% block content %}
+<form method="post">
+  <label for="numero_comprobante"># Comprobante</label>
+  <input
+    type="number"
+    name="numero_comprobante"
+    id="numero_comprobante"
+    value="{{ request.form['numero_comprobante'] or purchase['numero_comprobante'] }}"
+    required
+  />
+  <label for="fecha_compra">Fecha de compra</label>
+  <input
+    type="date"
+    name="fecha_compra"
+    id="fecha_compra"
+    value="{{ request.form['fecha_compra'] or purchase['fecha_compra'] }}"
+    required
+  />
+  <label for="fecha_pago">Fecha de pago</label>
+  <input
+    type="date"
+    name="fecha_pago"
+    id="fecha_pago"
+    value="{{ request.form['fecha_pago'] or purchase['fecha_pago'] }}"
+    required
+  />
+  <label for="iva_compra">IVA</label>
+  <input
+    type="number"
+    step="any"
+    name="iva_compra"
+    id="iva_compra"
+    value="{{ request.form['iva_compra'] or purchase['iva_compra'] }}"
+  />
+  <label for="otros_impuestos">Otro impuestos</label>
+  <input
+    type="number"
+    step="any"
+    name="otros_impuestos"
+    id="otros_impuestos"
+    value="{{ request.form['otros_impuestos'] or purchase['otros_impuestos'] }}"
+  />
+  <label for="no_gravado">No gravado</label>
+  <input
+    type="number"
+    step="any"
+    name="no_gravado"
+    id="no_gravado"
+    value="{{ request.form['no_gravado'] or purchase['no_gravado'] }}"
+  />
+  <label for="total">Total</label>
+  <input
+    type="number"
+    step="any"
+    name="total"
+    id="total"
+    value="{{ request.form['total'] or purchase['total'] }}"
+    required
+  />
+  <label for="supplier_id">supplier_id</label>
+  <select name="supplier_id">
+    {% for supplier in suppliers %} {% if supplier['id'] in
+    (request.form['supplier_id'], purchase['supplier_id']) %}
+    <option value="{{ supplier['id'] }}" selected>
+      {{ supplier['razon_social'] }}({{ supplier['cuit'] }})
+    </option>
+    {% else %}
+    <option value="{{ supplier['id'] }}">
+      {{ supplier['razon_social'] }}({{ supplier['cuit'] }})
+    </option>
+    {% endif %} {% endfor %}
+  </select>
+  <input type="submit" value="Guardar" />
+</form>
+<hr />
+<form
+  action="{{ url_for('purchase.delete', purchase_id=purchase['id']) }}"
+  method="post"
+>
+  <input
+    class="danger"
+    type="submit"
+    value="Delete"
+    onclick="return confirm('estas seguro?');"
+  />
+</form>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% block header %}
+<h1>{% block title %}Compras{% endblock %}</h1>
+{% endblock %} {% block content %} {% for purchase in purchases %}
+<article class="supplier">
+  <header>
+    <div>
+      <h1>Total: {{ purchase['total'] }}</h1>
+      <h2>Fecha: {{ purchase['fecha_compra'] }}</h2>
+      <h2>Proveedor: {{ purchase['razon_social'] }}</h2>
+      <h3># Comprobante: {{ purchase['numero_comprobante'] }}</h3>
+      <h3>Fecha de pago: {{ purchase['fecha_pago'] }}</h3>
+      <div class="cuit">
+        Id: {{ purchase['id'] }} IVA: {{ purchase['iva_compra'] }} No gravado:
+        {{ purchase['no_gravado'] }} Otros: {{ purchase['otros_impuestos'] }}
+      </div>
+    </div>
+    <a
+      class="action"
+      href="{{ url_for('purchase.update', purchase_id=purchase['id']) }}"
+      >Editar</a
+    >
+  </header>
+</article>
+{% if not loop.last %}
+<hr />
+{% endif %} {% endfor %} {% endblock %}

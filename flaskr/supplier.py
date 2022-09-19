@@ -37,11 +37,11 @@ def register():
             except db.IntegrityError:
                 error = f"Razon social {razon_social} ya esta registrado."
             else:
-                return redirect(url_for("proveedor.index"))
+                return redirect(url_for("supplier.index"))
 
         flash(error)
 
-    return render_template("proveedor/create.html")
+    return render_template("supplier/create.html")
 
 
 @bp.route("/", methods=["GET"])
@@ -98,7 +98,6 @@ def update(razon_social: str):
 
 @bp.route("/<string:razon_social>/eliminar", methods=("POST",))
 def delete(razon_social: str):
-    get_supplier(razon_social)
     db = get_db()
     db.execute("DELETE FROM proveedores WHERE razon_social = ?", (razon_social,))
     db.commit()

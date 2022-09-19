@@ -1,0 +1,34 @@
+{% extends 'base.html' %} {% block header %}
+<h1>{% block title %}Nueva compra{% endblock %}</h1>
+{% endblock %} {% block content %}
+<form method="post">
+  <label for="numero_comprobante"># Comprobante</label>
+  <input
+    type="number"
+    name="numero_comprobante"
+    id="numero_comprobante"
+    required
+  />
+  <label for="fecha_compra">Fecha de compra</label>
+  <input type="date" name="fecha_compra" id="fecha_compra" required />
+  <label for="fecha_pago">Fecha de pago</label>
+  <input type="date" name="fecha_pago" id="fecha_pago" required />
+  <label for="iva_compra">IVA</label>
+  <input type="number" step="any" name="iva_compra" id="iva_compra" />
+  <label for="otros_impuestos">Otro impuestos</label>
+  <input type="number" step="any" name="otros_impuestos" id="otros_impuestos" />
+  <label for="no_gravado">No gravado</label>
+  <input type="number" step="any" name="no_gravado" id="no_gravado" />
+  <label for="total">Total</label>
+  <input type="number" step="any" name="total" id="total" required />
+  <label for="supplier_id">supplier_id</label>
+  <select name="supplier_id">
+    {% for supplier in suppliers %}
+    <option value="{{ supplier['id'] }}">
+      {{ supplier['razon_social'] }}({{ supplier['cuit'] }})
+    </option>
+    {% endfor %}
+  </select>
+  <input type="submit" value="Guardar" />
+</form>
+{% endblock %}

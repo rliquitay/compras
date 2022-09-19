@@ -1,19 +1,18 @@
-<!doctype html>
+<!DOCTYPE html>
 <title>{% block title %}{% endblock %} - Flaskr</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 <nav>
-  <h1>Compras</h1>
+  <h1>Registro de Compras</h1>
   <ul>
-      <li><a href="{{ url_for('supplier.index') }}">Proveedores</a>
-      <li><a href="{{ url_for('supplier.register') }}">Crear proveedor</a>
+    <li><a href="{{ url_for('purchase.index') }}">Compras</a></li>
+    <li><a href="{{ url_for('purchase.register') }}">Nueva Compra</a></li>
+    <li><a href="{{ url_for('supplier.index') }}">Proveedores</a></li>
+    <li><a href="{{ url_for('supplier.register') }}">Crear proveedor</a></li>
   </ul>
 </nav>
 <section class="content">
-  <header>
-    {% block header %}{% endblock %}
-  </header>
+  <header>{% block header %}{% endblock %}</header>
   {% for message in get_flashed_messages() %}
-    <div class="flash">{{ message }}</div>
-  {% endfor %}
-  {% block content %}{% endblock %}
+  <div class="flash">{{ message }}</div>
+  {% endfor %} {% block content %}{% endblock %}
 </section>
