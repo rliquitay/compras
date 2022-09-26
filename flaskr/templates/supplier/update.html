@@ -1,20 +1,49 @@
-{% extends 'base.html' %}
-
-{% block header %}
-  <h1>{% block title %}Editar "{{ supplier['razon_social'] }}"{% endblock %}</h1>
-{% endblock %}
-
-{% block content %}
-  <form method="post">
-    <label for="razon_social">Razon Social</label>
-    <input name="razon_social" id="razon_social"
-      value="{{ request.form['razon_social'] or supplier['razon_social'] }}" required>
-    <label for="cuit">Cuit</label>
-    <input name="cuit" id="cuit" value="{{ request.form['cuit'] or supplier['cuit'] }}">
-    <input type="submit" value="Guardar">
-  </form>
-  <hr>
-  <form action="{{ url_for('supplier.delete', razon_social=supplier['razon_social']) }}" method="post">
-    <input class="danger" type="submit" value="Delete" onclick="return confirm('estas seguro?');">
-  </form>
+{% extends 'base.html' %} {% block header %}Editar "{{ supplier['razon_social']
+}}"{% endblock %} {% block title %}Proveedores{% endblock %} {% block content %}
+<form method="post" class="row gy-2 gx-3">
+  <div class="row mb-3">
+    <div class="col-sm-3">
+      <label for="cuit" class="form-label">Cuit</label>
+      <input
+        class="form-control"
+        name="cuit"
+        id="cuit"
+        value="{{ request.form['cuit'] or supplier['cuit'] }}"
+      />
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-sm-3">
+      <label for="razon_social" class="form-label">Razón Social</label>
+      <input
+        class="form-control"
+        type="razon_social"
+        name="razon_social"
+        id="razon_social"
+        value="{{ request.form['razon_social'] or supplier['razon_social'] }}"
+        required
+      />
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-sm-3">
+      <button type="submit" class="btn btn-primary">Guardar</button>
+    </div>
+  </div>
+</form>
+<form
+  action="{{ url_for('supplier.delete', razon_social=supplier['razon_social']) }}"
+  method="post"
+>
+  <div class="row mb-3">
+    <div class="col-sm-3">
+      <input
+        class="form-control"
+        type="submit"
+        value="Delete"
+        onclick="return confirm('estas seguro?');"
+      />
+    </div>
+  </div>
+</form>
 {% endblock %}

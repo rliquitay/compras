@@ -84,7 +84,8 @@ def index():
             c.otros_impuestos,
             c.no_gravado,
             c.total,
-            p.razon_social
+            p.razon_social,
+            p.cuit
         FROM
             compras AS c
         JOIN
@@ -109,6 +110,7 @@ def get_purchase(purchase_id: int):
             c.no_gravado,
             c.total,
             p.id AS supplier_id,
+            p.cuit,
             p.razon_social
         FROM
             compras AS c

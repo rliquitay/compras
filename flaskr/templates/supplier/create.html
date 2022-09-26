@@ -1,11 +1,28 @@
-{% extends 'base.html' %} {% block header %}
-<h1>{% block title %}Crear proveedor{% endblock %}</h1>
-{% endblock %} {% block content %}
-<form method="post">
-  <label for="cuit">Cuit</label>
-  <input name="cuit" id="cuit" />
-  <label for="razon_social">Razon Social</label>
-  <input type="razon_social" name="razon_social" id="razon_social" required />
-  <input type="submit" value="Guardar" />
+{% extends 'base.html' %} {% block header %}Crear Proveedor{% endblock %} {%
+block title %}Proveedores{% endblock %} {% block content %}
+<form method="post" class="row gy-2 gx-3">
+  <div class="row mb-3">
+    <div class="col-sm-3">
+      <label for="cuit" class="form-label">Cuit</label>
+      <input class="form-control" name="cuit" id="cuit" />
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-sm-3">
+      <label for="razon_social" class="form-label">Razón Social</label>
+      <input
+        class="form-control"
+        type="razon_social"
+        name="razon_social"
+        id="razon_social"
+        required
+      />
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-sm-3">
+      <button type="submit" class="btn btn-primary">Guardar</button>
+    </div>
+  </div>
 </form>
 {% endblock %}

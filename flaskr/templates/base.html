@@ -1,18 +1,94 @@
 <!DOCTYPE html>
-<title>{% block title %}{% endblock %} - Flaskr</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
-<nav>
-  <h1>Registro de Compras</h1>
-  <ul>
-    <li><a href="{{ url_for('purchase.index') }}">Compras</a></li>
-    <li><a href="{{ url_for('purchase.register') }}">Nueva Compra</a></li>
-    <li><a href="{{ url_for('supplier.index') }}">Proveedores</a></li>
-    <li><a href="{{ url_for('supplier.register') }}">Crear proveedor</a></li>
-  </ul>
-</nav>
-<section class="content">
-  <header>{% block header %}{% endblock %}</header>
-  {% for message in get_flashed_messages() %}
-  <div class="flash">{{ message }}</div>
-  {% endfor %} {% block content %}{% endblock %}
-</section>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}{% endblock %} - Flaskr</title>
+    <link
+      href="{{ url_for('static', filename='css/bootstrap.min.css') }}"
+      rel="stylesheet"
+    />
+
+    <!-- Favicons -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='icons/bootstrap-icons.css') }}"
+    />
+  </head>
+  <body>
+    <header
+      class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow"
+    >
+      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#"
+        >Gestión de Compras</a
+      >
+      <button
+        class="navbar-toggler position-absolute d-md-none collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#sidebarMenu"
+        aria-controls="sidebarMenu"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </header>
+    <div class="container-fluid">
+      <div class="row">
+        <nav
+          id="sidebarMenu"
+          class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse"
+        >
+          <div class="position-sticky pt-3 sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('purchase.index') }}"
+                  ><i class="bi bi-cart4"></i>Compras</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('supplier.index') }}"
+                  ><i class="bi bi-people-fill"></i>Proveedores</a
+                >
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+          <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+          >
+            <h1 class="h2">{% block header %}{% endblock %}</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+              {% block new %}{% endblock %}
+            </div>
+          </div>
+          {% block content %}{% endblock %}
+        </main>
+      </div>
+    </div>
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      {% for message in get_flashed_messages() %}
+      <div class="toast-header">
+        <img src="..." class="rounded me-2" alt="..." />
+        <strong class="me-auto">Error</strong>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="toast"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="toast-body">{{ message }}</div>
+    </div>
+    {% endfor %}
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+      crossorigin="anonymous"
+    ></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+  </body>
+</html>
