@@ -1,34 +1,65 @@
 {% extends 'base.html' %} {% block header %}
 <h1>{% block title %}Nueva compra{% endblock %}</h1>
 {% endblock %} {% block content %}
-<form method="post">
-  <label for="numero_comprobante"># Comprobante</label>
-  <input
-    type="number"
-    name="numero_comprobante"
-    id="numero_comprobante"
-    required
-  />
-  <label for="fecha_compra">Fecha de compra</label>
-  <input type="date" name="fecha_compra" id="fecha_compra" required />
-  <label for="fecha_pago">Fecha de pago</label>
-  <input type="date" name="fecha_pago" id="fecha_pago" required />
-  <label for="iva_compra">IVA</label>
-  <input type="number" step="any" name="iva_compra" id="iva_compra" />
-  <label for="otros_impuestos">Otro impuestos</label>
-  <input type="number" step="any" name="otros_impuestos" id="otros_impuestos" />
-  <label for="no_gravado">No gravado</label>
-  <input type="number" step="any" name="no_gravado" id="no_gravado" />
-  <label for="total">Total</label>
-  <input type="number" step="any" name="total" id="total" required />
-  <label for="supplier_id">supplier_id</label>
-  <select name="supplier_id">
-    {% for supplier in suppliers %}
-    <option value="{{ supplier['id'] }}">
-      {{ supplier['razon_social'] }}({{ supplier['cuit'] }})
-    </option>
-    {% endfor %}
-  </select>
-  <input type="submit" value="Guardar" />
+<form method="post" class="row gy-2 gx-3">
+  <div class="row mb-3">
+    <div class="col-sm-3">
+      <label for="numero_comprobante" class="form-label"># Comprobante</label>
+      <input type="number" class="form-control" name="numero_comprobante" id="numero_comprobante" required />
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-sm-3">
+      <label for="fecha_compra" class="form-label">Fecha de compra</label>
+      <input type="date" class="form-control" name="fecha_compra" id="fecha_compra" required />
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-sm-3">
+      <label for="fecha_pago" class="form-label">Fecha de pago</label>
+      <input type="date" class="form-control" name="fecha_pago" id="fecha_pago" required />
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-sm-3">
+      <label for="iva_compra" class="form-label">IVA</label>
+      <input type="number" class="form-control" step="any" name="iva_compra" id="iva_compra" />
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-sm-3">
+      <label for="otros_impuestos" class="form-label">Otro impuestos</label>
+      <input type="number" class="form-control" step="any" name="otros_impuestos" id="otros_impuestos" />
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-sm-3">
+      <label for="no_gravado" class="form-label">No gravado</label>
+      <input type="number" class="form-control" step="any" name="no_gravado" id="no_gravado" />
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-sm-3">
+      <label for="total" class="form-label">Total</label>
+      <input type="number" class="form-control" step="any" name="total" id="total" required />
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-sm-3">
+      <label for="supplier_id" class="form-label">Proveedor</label>
+      <select name="supplier_id" class="form-select">
+        {% for supplier in suppliers %}
+        <option value="{{ supplier['id'] }}">
+          {{ supplier['razon_social'] }}({{ supplier['cuit'] }})
+        </option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-sm-3">
+      <button type="submit" class="btn btn-primary">Guardar</button>
+    </div>
+  </div>
 </form>
 {% endblock %}
