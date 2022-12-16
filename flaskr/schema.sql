@@ -16,7 +16,6 @@ create table if not exists compras(
     numero_comprobante integer not null unique,
     fecha_compra date not null,
     fecha_pago date not null,
-    iva_compra integer null,
     otros_impuestos integer null,
     no_gravado integer null,
     total float not null,
@@ -27,6 +26,7 @@ create table if not exists compras(
 create table if not exists detalles(
     id integer primary key autoincrement,
     producto text not null,
+    iva_compra integer null,
     precio_unitario float not null,
     cantidad integer not null,
     subtotal float not null,
