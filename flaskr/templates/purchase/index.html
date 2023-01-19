@@ -1,12 +1,6 @@
 {% extends 'base.html' %} {% block header %} Compras {% endblock %} {% block
 title %}Compras {% endblock %} {% block new %}
-<a
-  href="{{ url_for('purchase.register') }}"
-  class="btn btn-primary"
-  tabindex="-1"
-  role="button"
-  aria-disabled="true"
->
+<a href="{{ url_for('purchase.register') }}" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">
   <span data-feather="plus-circle" class="align-text-bottom"></span>
   Nuevo
 </a>
@@ -20,7 +14,6 @@ title %}Compras {% endblock %} {% block new %}
         <th scope="col">Razón Social</th>
         <th scope="col">Fecha Compra</th>
         <th scope="col">Fecha Pago</th>
-        <th scope="col">IVA</th>
         <th scope="col">No Gravado</th>
         <th scope="col">Otros</th>
         <th scope="col">Total</th>
@@ -35,14 +28,12 @@ title %}Compras {% endblock %} {% block new %}
         <td>{{ purchase['razon_social'] }}</td>
         <td>{{ purchase['fecha_compra'] }}</td>
         <td>{{ purchase['fecha_pago'] }}</td>
-        <td>{{ purchase['iva_compra'] }}</td>
         <td>{{ purchase['no_gravado'] }}</td>
         <td>{{ purchase['otros_impuestos'] }}</td>
         <td>{{ purchase['total'] }}</td>
         <td>
-          <a href="{{ url_for('purchase.update', purchase_id=purchase['id']) }}"
-            ><i class="bi bi-pencil-fill"></i
-          ></a>
+          <a href="{{ url_for('purchase.update', purchase_id=purchase['id']) }}"><i class="bi bi-pencil-fill"></i></a>
+          <a href="{{ url_for('product.index', purchase_id=purchase['id']) }}"><i class="bi bi-basket"></i></a>
         </td>
       </tr>
       {% if not loop.last %} {% endif %} {% endfor %}

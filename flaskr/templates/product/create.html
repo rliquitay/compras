@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block header %}
+<div class="container text-center">
+  <div class="row">
+    <div class="col">
+      <h1>{% block title %}Nuevo producto{% endblock %}</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      # <b>{{ purchase['numero_comprobante'] }}</b>
+    </div>
+    <div class="col">
+      Proveedor: <b>{{ purchase['razon_social']}}</b>
+    </div>
+    <div class="col">
+      Fecha: <b>{{ purchase['fecha_compra'] }}</b>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block content %}
+<form method="post" class="row">
+  <div class="row mb-3">
+    <div class="col-sm-2">
+      <label for="producto" class="form-label">Producto</label>
+      <input type="text" class="form-control" name="producto" id="producto" required />
+    </div>
+    <div class="col-sm-2">
+      <label for="precio_unitario" class="form-label">Precio Unitario</label>
+      <input type="number" class="form-control" step="any" name="precio_unitario" id="precio_unitario" required />
+    </div>
+    <div class="col-sm-2">
+      <label for="cantidad" class="form-label">Cantidad</label>
+      <input type="number" class="form-control" name="cantidad" id="cantidad" required />
+    </div>
+    <div class="col-sm-1">
+      <label for="iva_compra" class="form-label">IVA</label>
+      <input type="number" class="form-control" step="any" name="iva_compra" id="iva_compra" />
+    </div>
+    <div class="col-sm-2">
+      <label for="subtotal" class="form-label"><b>SubTotal</b></label>
+      <input type="number" class="form-control" step="any" name="subtotal" id="subtotal" />
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-sm-3">
+      <button type="submit" class="btn btn-primary">Guardar</button>
+    </div>
+</form>
+{% endblock %}

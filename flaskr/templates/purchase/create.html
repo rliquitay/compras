@@ -8,14 +8,6 @@
       <input type="number" class="form-control" name="numero_comprobante" id="numero_comprobante" required />
     </div>
     <div class="col-sm-2">
-      <label for="fecha_compra" class="form-label">Fecha de compra</label>
-      <input type="date" class="form-control" name="fecha_compra" id="fecha_compra" required />
-    </div>
-    <div class="col-sm-2">
-      <label for="fecha_pago" class="form-label">Fecha de pago</label>
-      <input type="date" class="form-control" name="fecha_pago" id="fecha_pago" required />
-    </div>
-    <div class="col-sm-2">
       <label for="supplier_id" class="form-label">Proveedor</label>
       <select name="supplier_id" class="form-select">
         {% for supplier in suppliers %}
@@ -27,30 +19,16 @@
     </div>
   </div>
   <div class="row mb-3">
-    <h2>Productos</h2>
-    <div class="col-sm-3">
-      <label for="producto1" class="form-label">Producto</label>
-      <input type="text" class="form-control" name="producto1" id="producto1" required />
+    <div class="col-sm-2">
+      <label for="fecha_compra" class="form-label">Fecha de compra</label>
+      <input type="date" class="form-control" name="fecha_compra" id="fecha_compra" required />
     </div>
-    <div class="col-sm-1">
-      <label for="precio_unitario1" class="form-label">Precio</label>
-      <input type="number" class="form-control" step="any" name="precio_unitario1" id="precio_unitario1" required />
-    </div>
-    <div class="col-sm-1">
-      <label for="cantidad1" class="form-label">Cantidad</label>
-      <input type="number" class="form-control" name="cantidad1" id="cantidad1" required />
-    </div>
-    <div class="col-sm-1">
-      <label for="iva_compra1" class="form-label">IVA</label>
-      <input type="number" class="form-control" step="any" name="iva_compra1" value="0.21" id="iva_compra1" />
-    </div>
-    <div class="col-sm-1">
-      <label for="subtotal1" class="form-label">Subtotal</label>
-      <input type="text" class="form-control" name="subtotal1" id="subtotal1" disabled />
+    <div class="col-sm-2">
+      <label for="fecha_pago" class="form-label">Fecha de pago</label>
+      <input type="date" class="form-control" name="fecha_pago" id="fecha_pago" required />
     </div>
   </div>
   <div class="row mb-3">
-    <h2>Total</h2>
     <div class="col-sm-1">
       <label for="otros_impuestos" class="form-label">Impuestos</label>
       <input type="number" class="form-control" step="any" name="otros_impuestos" id="otros_impuestos" />
@@ -61,7 +39,7 @@
     </div>
     <div class="col-sm-2">
       <label for="total" class="form-label"><b>Total</b></label>
-      <input type="number" class="form-control" step="any" name="total" id="total" disabled />
+      <input type="number" class="form-control" step="any" name="total" id="total" />
     </div>
   </div>
   <div class="row mb-3">
@@ -70,34 +48,4 @@
     </div>
   </div>
 </form>
-<script>
-  const precioUnitario = document.getElementById('precio_unitario1');
-  const cantidad = document.getElementById('cantidad1');
-  const subtotal = document.getElementById('subtotal1');
-  const total = document.getElementById('total');
-  const ivaCompra = document.getElementById('iva_compra1');
-  const otrosImpuestos = document.getElementById('otros_impuestos');
-  const noGravado = document.getElementById('no_gravado');
-  const calcularSubtotal = () => {
-    subtotal.value = precioUnitario.value * cantidad.value * (1 + parseFloat(ivaCompra.value));
-    subtotal.value = Math.round(subtotal.value * 100) / 100;
-    subtotal.dispatchEvent(new Event('change'));
-  };
-  const calcularTotal = () => {
-    total.value = subtotal.value;
-    if (otrosImpuestos.value) {
-      total.value = parseFloat(total.value) + parseFloat(otrosImpuestos.value);
-    }
-    if (noGravado.value) {
-      total.value = parseFloat(total.value) + parseFloat(noGravado.value);
-    }
-    total.value = Math.round(total.value * 100) / 100;
-  };
-  precioUnitario.addEventListener('change', calcularSubtotal);
-  cantidad.addEventListener('change', calcularSubtotal);
-  ivaCompra.addEventListener('change', calcularSubtotal);
-  subtotal.addEventListener('change', calcularTotal);
-  otrosImpuestos.addEventListener('change', calcularTotal);
-  noGravado.addEventListener('change', calcularTotal);
-</script>
 {% endblock %}

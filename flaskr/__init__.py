@@ -23,9 +23,10 @@ def create_app():
 
     db.init_app(app)
 
-    from . import supplier, purchase
+    from . import supplier, purchase, product
 
     app.register_blueprint(supplier.bp)
     app.register_blueprint(purchase.bp)
+    app.register_blueprint(product.bp)
 
     return app
